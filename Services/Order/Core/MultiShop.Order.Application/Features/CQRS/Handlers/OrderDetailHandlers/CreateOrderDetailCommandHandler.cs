@@ -4,11 +4,11 @@ using MultiShop.Order.Domain.Entities;
 
 namespace MultiShop.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers
 {
-    public class CreateOrderDetailQueryHandler
+    public class CreateOrderDetailCommandHandler
     {
         private readonly IRepository<OrderDetail> _repository;
 
-        public CreateOrderDetailQueryHandler(IRepository<OrderDetail> repository)
+        public CreateOrderDetailCommandHandler(IRepository<OrderDetail> repository)
         {
             _repository = repository;
         }
