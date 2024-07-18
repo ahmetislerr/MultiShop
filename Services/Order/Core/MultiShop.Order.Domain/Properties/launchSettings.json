@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "MultiShop.Order.Domain": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:65309;http://localhost:65310"
+    }
+  }
+}
