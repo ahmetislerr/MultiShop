@@ -8,11 +8,11 @@ namespace MultiShop.Cargo.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CargoCompanyController : ControllerBase
+    public class CargoCompaniesController : ControllerBase
     {
         private readonly ICargoCompanySevice _cargoCompanySevice;
 
-        public CargoCompanyController(ICargoCompanySevice cargoCompanySevice)
+        public CargoCompaniesController(ICargoCompanySevice cargoCompanySevice)
         {
             _cargoCompanySevice = cargoCompanySevice;
         }
