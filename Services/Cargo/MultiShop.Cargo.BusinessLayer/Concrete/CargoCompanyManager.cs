@@ -4,7 +4,7 @@ using MultiShop.Cargo.EntityLayer.Concrete;
 
 namespace MultiShop.Cargo.BusinessLayer.Concrete
 {
-    public class CargoCompanyManager : ICargoCompanySevice
+    public class CargoCompanyManager : ICargoCompanyService
     {
         private readonly ICargoCompanyDal _cargoCompanyDal;
         public void TDelete(int id)

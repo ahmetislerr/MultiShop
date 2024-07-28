@@ -10,9 +10,9 @@ namespace MultiShop.Cargo.WebApi.Controllers
     [ApiController]
     public class CargoCompaniesController : ControllerBase
     {
-        private readonly ICargoCompanySevice _cargoCompanySevice;
+        private readonly ICargoCompanyService _cargoCompanySevice;
 
-        public CargoCompaniesController(ICargoCompanySevice cargoCompanySevice)
+        public CargoCompaniesController(ICargoCompanyService cargoCompanySevice)
         {
             _cargoCompanySevice = cargoCompanySevice;
         }
