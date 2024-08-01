@@ -1,5 +1,38 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.Extensions.Options;
+using MultiShop.Basket.Services.BasketServices;
+using MultiShop.Basket.Services.LoginServices;
+using MultiShop.Basket.Settings;
+
 var builder = WebApplication.CreateBuilder(args);
 
+var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+{
+    opt.Authority = builder.Configuration["IdentityServerUrl"];
+    opt.Audience = "ResourceBasket";
+    opt.RequireHttpsMetadata= false;
+});
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ILoginService,LoginService>();
+builder.Services.AddScoped<IBasketService,BasketService>();
+builder.Services.Configure<RedisSettings>(builder.Configuration.GetSection("RedisSettings"));
+builder.Services.AddSingleton<RedisService>(sp =>
+{
+    var redisSettings = sp.GetRequiredService<IOptions<RedisSettings>>().Value;
+    var redis = new RedisService(redisSettings.Host, redisSettings.Port);
+    redis.Connect();
+    return redis;
+});
+
+builder.Services.AddControllers(opt =>
+{
+    opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
+});
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -17,6 +50,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
