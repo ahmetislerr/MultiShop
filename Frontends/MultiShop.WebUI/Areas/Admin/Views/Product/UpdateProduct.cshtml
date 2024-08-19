@@ -1,7 +1,7 @@
-﻿@model CreateProductDto
+﻿@model UpdateProductDto
 @{
-	ViewData["Title"] = "CreateProduct";
-	Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    ViewData["Title"] = "UpdateProduct";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
 
 <section class="content container-fluid">
@@ -13,6 +13,7 @@
 				<br />
 				<div class="bs-example" data-example-id="bordered-table">
 					<form method="post">
+						<input type="hidden" asp-for="ProductId" />
 						<label>Ürün Adı</label>
 						<input type="text" class="form-control" asp-for="ProductName" />
 						<br />
@@ -28,10 +29,12 @@
 						<label>Ürün Açıklaması</label>
 						<textarea class="form-control" asp-for="ProductDescription" rows="5"></textarea>
 						<br />
-						<button class="btn btn-primary">Ürünü Ekle</button>
+						<button class="btn btn-primary">Ürünü Güncelle</button>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
+
